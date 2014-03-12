@@ -51,24 +51,24 @@ body {
 	<div id="top">
 		<div class="vert-text" style="width: 1280px;">
 		  <div style="background: #fffeff; opacity: 0.95;">
-			<h4 style="margin-top: 6px;"> Annual rainfall in 2013 plotted using canvas in d3.js. </h4>
+			<h4 style="margin-top: 6px;"> 24-hour rainfall on March 7th, 2014 plotted using canvas in d3.js. </h4>
 		  </div>
 		</div>	
 	</div>
-	<div class="row">
+	<div class="row" style="margin-top:30px;">
 		<div class="col-sm-8 col-sm-offset-2">
 		 <pre> <code class="inlinecode">var width = 960,
-	height = 500
+    height = 500
 
 var projection = d3.geo.albers()
-	.scale(1000);
+    .scale(1000);
 
-var color = d3.scale.quantile().domain([0, 272])
-	.range(colorbrewer.Greens[9]); 
+var color = d3.scale.quantile().domain([0, 3.76])
+    .range(colorbrewer.Greens[9]); 
 
 var canvas = d3.select("body").append("canvas")
-	.attr("width", width)
-	.attr("height", height);
+    .attr("width", width)
+    .attr("height", height);
 
 var context = canvas.node().getContext("2d");
 
@@ -76,10 +76,10 @@ var path = d3.geo.path().projection(projection).context(context);
 
 d3.json("data/us.json", function(error, topo) {
   var land = topojson.feature(topo, topo.objects.states);
-	context.beginPath();
-	path(land);
-	context.fillStyle = "#eee";
-	context.fill();
+    context.beginPath();
+    path(land);
+    context.fillStyle = "#eee";
+    context.fill();
 })
 
 function draw(ID){
@@ -95,7 +95,7 @@ function render(d) {
   context.fillRect(p[0],p[1],1,1);
 }
 
-draw("wy2013_small")</code></pre>
+draw("precip_03072014")</code></pre>
 		</div>
 	</div>
  </div>	

@@ -12,7 +12,7 @@ var width = 960,
 var projection = d3.geo.albers()
     .scale(1000);
 
-var color = d3.scale.quantile().domain([0, 272])
+var color = d3.scale.quantile().domain([0, 3.76])
     .range(colorbrewer.Greens[9]); 
 
 var canvas = d3.select("body").append("canvas")
@@ -44,6 +44,6 @@ function render(d) {
   context.fillRect(p[0],p[1],1,1);
 }
 
-draw("wy2013_small")
+draw("precip_03072014")
 
 </script>
