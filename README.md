@@ -11,11 +11,7 @@ Steps to process and visualize NOAA's precipitation data
 
 <p> Using <a href="http://www.gdal.org/ogr2ogr.html" target="_blank">ogr2ogr</a>, convert the dowloaded shapefile to a .csv.   In order to do this, enter into the  folder with all the downloaded files in the terminal.  Then, use the following code: <p>
 
-<pre><code>
-
-ogr2ogr -f CSV  output.csv  filename.shp -lco GEOMETRY=AS_XYZ
-
-</code></pre>
+<pre><code> ogr2ogr -f CSV  output.csv  filename.shp -lco GEOMETRY=AS_XYZ </code></pre>
 
 <h2> Step 3 </h2>
 
