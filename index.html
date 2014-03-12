@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+<!-- Basic Page Needs
+================================================== -->
+<meta charset="utf-8">
+<title>Mike Taptich</title>
+<meta name="description" content="">
+<meta name="author" content="">
+<link href="stylesheets/css/bootstrap.css" rel="stylesheet">
+
+<link rel="shortcut icon" href="stylesheets/site_icon.png">
+<link rel="apple-touch-icon" href="stylesheets/site_icon.png">
+<link rel="apple-touch-icon" sizes="72x72" href="stylesheets/site_icon.png">
+<link rel="apple-touch-icon" sizes="114x114" href="stylesheets/site_icon.png">
+
+<!-- Add custom CSS here -->
+<link href="stylesheets/css/stylish-portfolio.css" rel="stylesheet">
+<link href="stylesheets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<style>
+body {
+  height: 100%;
+  width: 100%;
+  background: #fffeff;
+}
+
+</style>
+<body>
+  <div class="container" style="background: #fffeff; margin-top:10px;">
+	<div id="top">
+		  <div class="vert-text" style="width: 1280px;">
+		  <h1 style='font-size:5em'>Mike Taptich</h1>
+		  <h2 style="margin-top: -3px; color:#7f7f7f;">Visualizing Energy and Environmental Data</h2>
+		  <h4 style="margin-top: -3px;">Department of Civil & Environmental Engineering • UC Berkeley</h4>
+		  </div>
+	</div>
+
+ </div>	
+<div class="container">
+	<div class="vert-text" style="width: 1280px;">
+		<iframe src="stylesheets/Precipitation.html" marginwidth="0" marginheight="0" scrolling="no" style="border-style: none;width: 980px; height: 560px;margin-top:30px"></iframe>
+	</div>
+</div>
+ <div class="container" style="background: #fffeff; margin-top:-20px;">
+	<div id="top">
+		<div class="vert-text" style="width: 1280px;">
+		  <div style="background: #fffeff; opacity: 0.95;">
+			<h4 style="margin-top: 6px;"> Annual rainfall in 2013 plotted using canvas in d3.js. </h4>
+		  </div>
+		</div>	
+	</div>
+	<div class="row">
+		<div class="col-sm-8 col-sm-offset-2">
+		 <pre> <code class="inlinecode">var width = 960,
+	height = 500
+
+var projection = d3.geo.albers()
+	.scale(1000);
+
+var color = d3.scale.quantile().domain([0, 272])
+	.range(colorbrewer.Greens[9]); 
+
+var canvas = d3.select("body").append("canvas")
+	.attr("width", width)
+	.attr("height", height);
+
+var context = canvas.node().getContext("2d");
+
+var path = d3.geo.path().projection(projection).context(context);
+
+d3.json("data/us.json", function(error, topo) {
+  var land = topojson.feature(topo, topo.objects.states);
+	context.beginPath();
+	path(land);
+	context.fillStyle = "#eee";
+	context.fill();
+})
+
+function draw(ID){
+	d3.csv("data/"+ID+".csv", function(error, data) {
+	data.sort(function(a, b) { return +a.inches - +b.inches; })
+		  .forEach(render)
+	});
+}
+
+function render(d) {
+  p = projection([+d.Lon,+d.Lat]);
+  context.fillStyle = color(+d.inches);
+  context.fillRect(p[0],p[1],1,1);
+}
+
+draw("wy2013_small")</code></pre>
+		</div>
+	</div>
+ </div>	
+
+<footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3 text-center">
+            <ul class="list-inline">
+              <li><a href="http://cleanshipping.appspot.com/"><i class="fa fa-mail-reply fa-3x"></i></a></li>
+              <li><a href="mailto:m.taptich@berkeley.edu"><i class="fa fa-keyboard-o fa-3x"></i></a></li>
+              <li><a href="https://twitter.com/MikeTaptich"><i class="fa fa-twitter fa-3x"></a></i></li>
+              <li><a href="http://www.linkedin.com/pub/michael-taptich/21/263/b28/"><i class="fa fa-linkedin-square fa-3x"></i></a></li>
+            </ul>
+            <div class="top-scroll">
+              <a href="#top"><i class="fa fa-circle-arrow-up scroll fa-4x"></i></a>
+            </div>
+            <hr>
+            <p>Copyright &copy; Mike Taptich 2014</p>
+          </div>
+        </div>
+      </div>
+</footer>
+
+ <script src="stylesheets/js/jquery-1.10.2.js"></script>
+ <script src="stylesheets/js/bootstrap.js"></script>
+
+ <!-- ============== SCRIPTS =================== -->
+
+
+
+</body>
+</html>

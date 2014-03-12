@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<body>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="http://d3js.org/topojson.v1.min.js"></script>
+<script src="scripts/colorbrewer.js"></script>
+<script>
+
+var width = 960,
+    height = 500
+
+var projection = d3.geo.albers()
+    .scale(1000);
+
+var color = d3.scale.quantile().domain([0, 272])
+    .range(colorbrewer.Greens[9]); 
+
+var canvas = d3.select("body").append("canvas")
+    .attr("width", width)
+    .attr("height", height);
+
+var context = canvas.node().getContext("2d");
+
+var path = d3.geo.path().projection(projection).context(context);
+
+d3.json("data/us.json", function(error, topo) {
+  var land = topojson.feature(topo, topo.objects.states);
+    context.beginPath();
+    path(land);
+    context.fillStyle = "#eee";
+    context.fill();
+})
+
+function draw(ID){
+	d3.csv("data/"+ID+".csv", function(error, data) {
+	data.sort(function(a, b) { return +a.inches - +b.inches; })
+		  .forEach(render)
+	});
+}
+
+function render(d) {
+  p = projection([+d.Lon,+d.Lat]);
+  context.fillStyle = color(+d.inches);
+  context.fillRect(p[0],p[1],1,1);
+}
+
+draw("wy2013_small")
+
+</script>

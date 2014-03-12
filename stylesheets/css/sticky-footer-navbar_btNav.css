@@ -1,0 +1,44 @@
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body, .bound{
+  height: 100%;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  width: 100%;
+  /* Negative indent footer by its height */
+  margin: 0 auto 0px;
+  margin-top: 0px;
+  /* Pad bottom by footer height */
+  padding: 0 0 0px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 0px;
+  background-color: #FAFAFA;
+}
+
+
+/* Custom page CSS
+-------------------------------------------------- */
+/* Not required for template or sticky footer method. */
+
+#wrap > .bound {
+  padding-top: 30px;
+  padding-left: 20px;
+  padding-right: 0px;
+}
+
+.bound .text-muted {
+  margin: 0px 0;
+}
+
+code {
+  font-size: 80%;
+}
