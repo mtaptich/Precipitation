@@ -15,5 +15,5 @@ Steps to process and visualize NOAA's precipitation data
 
 <h2> Step 3 </h2>
 
-<p> Shrink the filesize by deleting all the columns other that "Lat", "Lon", and "Glob".
+<p> Shrink the filesize by deleting all the columns other than "Lat", "Lon", and "Glob".
 
